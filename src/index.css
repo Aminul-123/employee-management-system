@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(209, 208, 207);
+}
+.home {
+  padding: 2rem;
+}
+.home .employee-heading {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+.home > div> h2 {
+  font-size: 1.7rem;
+  font-weight: lighter;
+}
+.add-employee-link {
+  padding: 10px;
+  border: 1px solid gray;
+  color: black;
+  text-decoration: none;
+  font-weight: lighter;
+  font-size: 1.2rem;
+}
+.add-employee-link:hover {
+  background-color: rgb(204, 202, 202);
+  transition: all;
+}
+/* all cards */
+.all-cards {
+  display: flex;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+.card-cont {
+  padding: 15px;
+  border: 1px solid gray;
+}
+.emp-img {
+  height: 8rem;
+  width: 8rem;
+  transform: translateX(4.25rem);
+}
+.card-cont p {
+  padding: 2px;
+  font-size: 1.2rem;
+}
+.btns {
+  display: flex;
+  align-items: center;
+  transform: translateX(3rem);
+  gap: 1.4rem;
+}
+.btn {
+  padding: 7px;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  /* border: 1px solid black; */
+  /* border: none; */
+}
+.edit-btn {
+  background-color: #9bbb9ba3;
+  border: 1px solid #043535;
+  color: #043535;
+  text-decoration: none;
+}
+.del-btn {
+  background-color: #d0b686;
+  border: 1px solid #8a5d05;
+  color: #8a5d05;
+}
