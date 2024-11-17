@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Card from './Card';
 
 function Home() {
     const data = [
@@ -34,10 +35,8 @@ function Home() {
         {
           data.map((elem) => {
             return (
-              <div className='card-cont' key={elem.id}>
-                <Card elem={elem} />
-                 
-              </div>
+                <Card elem={elem} key={elem.id} />
+             
             )
           })
         }
@@ -47,21 +46,3 @@ function Home() {
 }
 
 export default Home
-
-function Card ({elem}) {
-  return (
-    <>
-                   <img src="https://cdn-icons-png.freepik.com/512/1870/1870038.png" alt="img" className='emp-img' />
-                  <p>Name : {`${elem.firstname} ${elem.lastname}`} </p>
-                  <p>ID: {elem.id} </p>
-                  <p>Department : {elem.department} </p>
-                  <p>Phone No : {elem.phone} </p>
-                  <p>Email: {elem.email} </p>
-                  <p>Gender : {elem.gender} </p>
-                  <div className='btns'>
-                    <Link to={`/edit-details/${elem.id}`} className="btn edit-btn">Edit</Link>
-                    <button className="btn del-btn">Delete</button>
-                  </div>
-    </>
-  )
-}
