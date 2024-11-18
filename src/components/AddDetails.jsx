@@ -11,10 +11,32 @@ function AddDetails() {
     genderName : 'Not specified',
     isCheck : null
   })
+  const [submissionErrors, setSubmissionErrors] = useState(null)
 
-  function handleSubmit (e) {
+  const errors = {}
+
+
+  
+  async function handleSubmit (e) {
     e.preventDefault()
 
+    if (!fname) errors.fnameError = 'First Name is required';
+    if (!lname) errors.lnameError = 'Last Name is required';
+    if (!phone ) errors.phoneError = 'Phone no is required';
+    if (!email) errors.emailError = 'Email is required';
+    if (!address) errors.addressError = 'Address is required';
+
+    setSubmissionErrors(errors)
+    
+    // if (!fname) setErrors({fnameError : 'First Name is required'})
+    //       if (!lname) setErrors({lnameError : 'Last Name is required'});
+
+      
+      // console.log( typeof errors, errors, Object.keys(errors).length)
+
+  if (Object.keys(errors).length === 0) {
+
+    
     const newEmployee = {
       id : Math.trunc(Math.random() * 100) + 1,
       fname,
@@ -26,8 +48,9 @@ function AddDetails() {
       address
     }
     console.log(newEmployee)
-
+    alert('submission successfull')
   }
+}
   function handleCheck (name) {
     setGender({genderName : name, isCheck : name})
   }
@@ -44,8 +67,10 @@ function AddDetails() {
             placeholder="first name"
             className="input"
             value={fname}
+            required
             onChange={(e) => setFname(e.target.value)}
           />
+          {submissionErrors?.fnameError && <p className="submissionErrors">{submissionErrors?.fnameError}</p>}
         </div>
 
         <div>
@@ -56,8 +81,11 @@ function AddDetails() {
             placeholder="Last name"
             className="input"
             value={lname}
+            required
             onChange={(e) => setLname(e.target.value)}
           />
+        {submissionErrors?.lnameError && <p className="submissionErrors">{submissionErrors?.lnameError}</p>}
+
         </div>
 
         <div>
@@ -79,8 +107,11 @@ function AddDetails() {
             id="phone-no"
             placeholder="Enter phone no"
             value={phone}
+            required
             onChange={(e) => setPhone(e.target.value)}
           />
+          {submissionErrors?.phoneError && <p className="submissionErrors">{submissionErrors?.phoneError}</p>}
+
         </div>
 
         <div className="email-details">
@@ -92,8 +123,11 @@ function AddDetails() {
             placeholder="enter email"
             className="input"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
           />
+          {submissionErrors?.emailError && <p className="submissionErrors">{submissionErrors?.emailError}</p>}
+
         </div>
 
         <div className="gender-select-cont">
@@ -123,8 +157,11 @@ function AddDetails() {
             id="address"
             placeholder="write your address"
             value={address}
+            required
             onChange={(e) => setAddress(e.target.value)}
           ></textarea>
+          {submissionErrors?.addressError && <p className="submissionErrors address-err" >{submissionErrors?.addressError}</p>}
+
         </div>
 
         <div>

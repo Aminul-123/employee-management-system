@@ -142,3 +142,10 @@ textarea {
   color: #d0b686;
   border: none;
 }
+.submissionErrors {
+  font-size: 12px;
+  color: rgb(253, 12, 12);
+}
+.address-err {
+  transform: translate(-34rem , 12.5rem);
+}
