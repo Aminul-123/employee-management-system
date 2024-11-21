@@ -2,18 +2,12 @@
 import { initializeApp } from "firebase/app";
 import { createContext, useContext } from "react";
 import { getFirestore, addDoc, collection } from "firebase/firestore";
+import { firebaseConfig } from "../firebase";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyD2MBL5hcMtBi-utQ9Z7MDZvrwxQN4Ppm0",
-  authDomain: "fir-employee-management-ccff0.firebaseapp.com",
-  projectId: "fir-employee-management-ccff0",
-  storageBucket: "fir-employee-management-ccff0.firebasestorage.app",
-  messagingSenderId: "673275031734",
-  appId: "1:673275031734:web:a573d963dc18a204efb617"
-};
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -29,7 +23,7 @@ function FirebaseProvider ({children}) {
         console.log(res)
     }
     return (
-        <FirebaseContext.Provider value={{app, addEmployee}} >
+        <FirebaseContext.Provider value={{app, addEmployee, firestore}} >
             {children}
         </FirebaseContext.Provider>
     )
