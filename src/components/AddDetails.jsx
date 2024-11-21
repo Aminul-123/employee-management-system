@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useFirebaseContext } from "../context/FirebaseContext";
 
 function AddDetails() {
   const [fname, setFname] = useState("");
@@ -12,6 +13,7 @@ function AddDetails() {
     isCheck : null
   })
   const [submissionErrors, setSubmissionErrors] = useState(null)
+  const {addEmployee} = useFirebaseContext()
 
   const errors = {}
 
@@ -27,12 +29,7 @@ function AddDetails() {
     if (!address) errors.addressError = 'Address is required';
 
     setSubmissionErrors(errors)
-    
-    // if (!fname) setErrors({fnameError : 'First Name is required'})
-    //       if (!lname) setErrors({lnameError : 'Last Name is required'});
-
-      
-      // console.log( typeof errors, errors, Object.keys(errors).length)
+   
 
   if (Object.keys(errors).length === 0) {
 
@@ -47,8 +44,17 @@ function AddDetails() {
       gender : gender.genderName,
       address
     }
-    console.log(newEmployee)
+    // console.log(newEmployee)
+      await  addEmployee(newEmployee)
     alert('submission successfull')
+    
+    setAddress('')
+    setDepartment('');
+    setEmail('')
+    setFname('')
+    setLname('');
+    setPhone('');
+    setGender('');
   }
 }
   function handleCheck (name) {
