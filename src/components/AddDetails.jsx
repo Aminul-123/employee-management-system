@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useFirebaseContext } from "../context/FirebaseContext";
+import { Link } from "react-router-dom";
 
 function AddDetails() {
   const [fname, setFname] = useState("");
@@ -24,18 +25,22 @@ function AddDetails() {
 
     if (!fname) errors.fnameError = 'First Name is required';
     if (!lname) errors.lnameError = 'Last Name is required';
-    if (!phone ) errors.phoneError = 'Phone no is required';
+
+    if (!phone ){
+     errors.phoneError = 'Phone no is required';
+    } else if (phone.length > 10 || phone.length < 10) errors.phoneError = 'Phone no must be 10 digits long'
+   
+
     if (!email) errors.emailError = 'Email is required';
     if (!address) errors.addressError = 'Address is required';
 
     setSubmissionErrors(errors)
    
-
   if (Object.keys(errors).length === 0) {
 
     
     const newEmployee = {
-      id : Math.trunc(Math.random() * 100) + 1,
+      id : Math.trunc(Math.random() * 1000) + 1,
       fname,
       lname,
       department,
@@ -46,7 +51,7 @@ function AddDetails() {
     }
     // console.log(newEmployee)
       await  addEmployee(newEmployee)
-    alert('submission successfull')
+   alert('submission successfull')
     
     setAddress('')
     setDepartment('');
@@ -174,6 +179,10 @@ function AddDetails() {
           <button type="submit" className="btn btn-submit" onClick={handleSubmit}>
             Submit
           </button>
+          <Link to={'/'} className="btn btn-submit link-btn">
+          Go to Home
+          </Link>
+          
         </div>
       </form>
     </div>
