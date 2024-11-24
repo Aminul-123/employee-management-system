@@ -1,38 +1,35 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useFirebaseContext } from "../context/FirebaseContext";
 import { Link } from "react-router-dom";
 
-function AddDetails() {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [department, setDepartment] = useState("Staff");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [gender, setGender] = useState({
-    genderName : 'Not specified',
-    isCheck : null
+ const AddDetails =  memo(function AddDetails() {
+  const [addData, setAddData] = useState({
+    fname : '',
+    lname : '',
+    department : 'Staff',
+    phone : '',
+    email : "",
+    address : "",
+    gender : ''
   })
   const [submissionErrors, setSubmissionErrors] = useState(null)
   const {addEmployee} = useFirebaseContext()
 
   const errors = {}
-
-
   
   async function handleSubmit (e) {
     e.preventDefault()
 
-    if (!fname) errors.fnameError = 'First Name is required';
-    if (!lname) errors.lnameError = 'Last Name is required';
+    if (!addData.fname) errors.fnameError = 'First Name is required';
+    if (!addData.lname) errors.lnameError = 'Last Name is required';
 
-    if (!phone ){
+    if (!addData.phone ){
      errors.phoneError = 'Phone no is required';
-    } else if (phone.length > 10 || phone.length < 10) errors.phoneError = 'Phone no must be 10 digits long'
+    } else if (addData.phone.length > 10 || addData.phone.length < 10) errors.phoneError = 'Phone no must be 10 digits long'
    
 
-    if (!email) errors.emailError = 'Email is required';
-    if (!address) errors.addressError = 'Address is required';
+    if (!addData.email) errors.emailError = 'Email is required';
+    if (!addData.address) errors.addressError = 'Address is required';
 
     setSubmissionErrors(errors)
    
@@ -40,30 +37,18 @@ function AddDetails() {
 
     
     const newEmployee = {
-      id : Math.trunc(Math.random() * 1000) + 1,
-      fname,
-      lname,
-      department,
-      phone,
-      email,
-      gender : gender.genderName,
-      address
+      ...addData,
+      id : Math.trunc(Math.random() * 100000) + 1,
     }
     // console.log(newEmployee)
       await  addEmployee(newEmployee)
    alert('submission successfull')
     
-    setAddress('')
-    setDepartment('');
-    setEmail('')
-    setFname('')
-    setLname('');
-    setPhone('');
-    setGender('');
+  setAddData({})
   }
 }
   function handleCheck (name) {
-    setGender({genderName : name, isCheck : name})
+    setAddData({ ...addData,  gender : name})
   }
   return (
     <div className="add-emp-cont">
@@ -77,9 +62,9 @@ function AddDetails() {
             id="f_name"
             placeholder="first name"
             className="input"
-            value={fname}
+            value={addData.fname}
             required
-            onChange={(e) => setFname(e.target.value)}
+            onChange={(e) => setAddData({...addData, fname : e.target.value})}
           />
           {submissionErrors?.fnameError && <p className="submissionErrors">{submissionErrors?.fnameError}</p>}
         </div>
@@ -91,9 +76,9 @@ function AddDetails() {
             id="l_name"
             placeholder="Last name"
             className="input"
-            value={lname}
+            value={addData.lname}
             required
-            onChange={(e) => setLname(e.target.value)}
+            onChange={(e) => setAddData({ ...addData, lname : e.target.value})}
           />
         {submissionErrors?.lnameError && <p className="submissionErrors">{submissionErrors?.lnameError}</p>}
 
@@ -101,7 +86,9 @@ function AddDetails() {
 
         <div>
           <label htmlFor="department">Department : </label>
-          <select id="department" value={department} onChange={(e) => setDepartment(e.target.value)}>
+          <select id="department" value={addData.department} onChange={(e) => setAddData({ ...addData,
+           department : e.target.value})}
+          >
             <option value="Staff">Staff</option>
             <option value="Front End Engineer">Front End Engineer</option>
             <option value="Backend Engineer">Backend Engineer</option>
@@ -117,9 +104,9 @@ function AddDetails() {
             name="phone-no"
             id="phone-no"
             placeholder="Enter phone no"
-            value={phone}
             required
-            onChange={(e) => setPhone(e.target.value)}
+            value={addData.phone}
+            onChange={(e) => setAddData({...addData, phone : e.target.value})}
           />
           {submissionErrors?.phoneError && <p className="submissionErrors">{submissionErrors?.phoneError}</p>}
 
@@ -133,9 +120,9 @@ function AddDetails() {
             id="email"
             placeholder="enter email"
             className="input"
-            value={email}
             required
-            onChange={(e) => setEmail(e.target.value)}
+            value={addData.email}
+            onChange={(e) => setAddData({...addData, email : e.target.value})}
           />
           {submissionErrors?.emailError && <p className="submissionErrors">{submissionErrors?.emailError}</p>}
 
@@ -146,15 +133,15 @@ function AddDetails() {
           <div className="select-gender">
             <div onClick={() => handleCheck('Female')} >
               <label htmlFor="female">Female</label>
-              <input type="checkbox" name="" id="female"  checked={gender.isCheck === 'Female'}  readOnly  />
+              <input type="checkbox" name="" id="female"  checked={addData.gender === 'Female'}  readOnly  />
             </div>
             <div onClick={() => handleCheck('Male')}>
               <label htmlFor="male">Male</label>
-              <input type="checkbox" name="" id="male" checked={gender.isCheck === 'Male'} readOnly />
+              <input type="checkbox" name="" id="male" checked={addData.gender === 'Male'} readOnly />
             </div>
             <div onClick={() => handleCheck('Other')}>
               <label htmlFor="other">Other</label>
-              <input type="checkbox" name="" id="other" checked={gender.isCheck === 'Other'} readOnly />
+              <input type="checkbox" name="" id="other" checked={addData.gender=== 'Other'} readOnly />
             </div> 
           </div>
         </div>
@@ -167,10 +154,9 @@ function AddDetails() {
             name=""
             id="address"
             placeholder="write your address"
-            value={address}
+            value={addData.address}
             required
-            onChange={(e) => setAddress(e.target.value)}
-          ></textarea>
+            onChange={(e) => setAddData({...addData, address : e.target.value})}></textarea>
           {submissionErrors?.addressError && <p className="submissionErrors address-err" >{submissionErrors?.addressError}</p>}
 
         </div>
@@ -187,6 +173,6 @@ function AddDetails() {
       </form>
     </div>
   );
-}
+})
 
 export default AddDetails;

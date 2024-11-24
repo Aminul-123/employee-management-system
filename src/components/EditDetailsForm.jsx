@@ -7,14 +7,11 @@ function EditDetailsForm() {
   const [empDetails, setEmpDetails] = useState({})
  
   const [submissionErrors, setSubmissionErrors] = useState(null)
-  const {addEmployee, firestore, data} = useFirebaseContext()
+  const { firestore, data} = useFirebaseContext()
   
   
   const {id} = useParams()
-  console.log(id) // string
-// console.log(localStorage.getItem('employee-ID'))
-  //console.log(empDetails) // got the result
-  //1ST SOLUTION TO THIS DEAD STATE PROBLEM IS TO MOVE USEEFFECT INTO A CUSTOM HOOK, AND IMPORT IT AT THE TOP
+  //console.log(id) // string
   useEffect(() => {
     async function getDetailsById () {
       const collectionRef = collection(firestore, 'add-employee');

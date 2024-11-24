@@ -7,7 +7,7 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-color: rgb(240, 234, 228);
+  background-color: rgba(242, 167, 130, 0.16);
   overflow-x: hidden;
 }
 .home {
@@ -29,10 +29,10 @@ body {
   text-decoration: none;
   font-weight: lighter;
   font-size: 1.2rem;
-  background-color: #a9d2f7;
+  background-color: #ecc6b4;
 }
 .add-employee-link:hover {
-  background-color: #89b8e0;
+  background-color: #cea18c;
   transition: all;
 }
 /* all cards */
@@ -52,6 +52,7 @@ body {
   width: 18rem;
   border: #1e1b1b;
   border: 1px solid gray;
+  background-color: #c7e18fc4;
 }
 .emp-img {
   height: 8rem;
@@ -83,9 +84,9 @@ body {
   text-decoration: none;
 }
 .del-btn {
-  background-color: #d0b686;
+  background-color: #f7b844;
   border: 1px solid #8a5d05;
-  color: #8a5d05;
+  color: #372709;
 }
 /* css related to adding employee */
 .add-emp-cont {

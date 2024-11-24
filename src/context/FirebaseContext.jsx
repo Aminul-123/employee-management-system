@@ -3,10 +3,6 @@ import { initializeApp } from "firebase/app";
 import { createContext, useContext, useEffect, useState } from "react";
 import { getFirestore, addDoc, collection , query, getDocs} from "firebase/firestore";
 import { firebaseConfig } from "../firebase";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 
 
 // Initialize Firebase

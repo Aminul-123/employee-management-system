@@ -5,28 +5,7 @@ import { useFirebaseContext } from '../context/FirebaseContext';
 
 function Home() {
   const {data, err} = useFirebaseContext()
-  // const [data, setData] = useState([]);
-  // const [err, setErr] = useState('')
-  
-
-  //     useEffect(() => {
-  //       async function getAllEmployee () {
-  //         try {
-  //           const collectionRef = collection(firestore, 'add-employee');
-  //           const q = query(collectionRef)
-  //           const snap = await getDocs(q);
-  //           if (!snap) throw new Error('No Employee data found☹🙁')
-  //            setData(snap.docs.map((elem) => ({...elem.data()})))
-  //         }
-  //         catch(err) {
-  //           // alert(err.message)
-  //           setErr(err.message)
-  //         }
-  //       }
-  //       getAllEmployee()
-  //     }, [data?.length])
-
-
+ 
     if (err) {
       return (
         <>

@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom"
+import { useFirebaseContext } from "../context/FirebaseContext";
+import { deleteDoc, doc } from "firebase/firestore";
 
 function Card ({elem}) {
-  const {fname, lname, id, phone, email, department, gender} = elem
+  const {firestore} = useFirebaseContext();
+  const {fname, lname, id, phone, email, department, gender , ID} = elem
 
   const firstname = fname[0].toUpperCase() + fname.slice(1, fname.length);
   const lastname = lname[0].toUpperCase() + lname.slice(1, lname.length);
+
+  async function handleDelete() {
+    await deleteDoc(doc(firestore, 'add-employee', ID)).then((res) => alert('successfull deletion'))
+    
+  }
+ // console.log(ID)
     return (
       <>
        <div  className='card-cont'  >
@@ -20,7 +29,7 @@ function Card ({elem}) {
                     <div className='btns'>
                       <Link to={`/employee-details/${id}`} className="btn " >View details</Link>
                       <Link to={`/edit-details/${id}`} className="btn edit-btn">Edit</Link>
-                      <button className="btn del-btn">Delete</button>
+                      <button className="btn del-btn" onClick={handleDelete}>Delete</button>
 
                     </div>
                     </div>
