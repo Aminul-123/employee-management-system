@@ -27,7 +27,7 @@ function Card ({elem}) {
                     <p>Email: {email} </p>
                     <p>Gender : {gender} </p>
                     <div className='btns'>
-                      <Link to={`/employee-details/${id}`} className="btn " >View details</Link>
+                      <Link to={`/employee-details/${id}`} className="btn view" >View details</Link>
                       <Link to={`/edit-details/${id}`} className="btn edit-btn">Edit</Link>
                       <button className="btn del-btn" onClick={handleDelete}>Delete</button>
 

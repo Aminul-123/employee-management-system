@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import { useFirebaseContext } from '../context/FirebaseContext';
 
 function Home() {
   const {data, err} = useFirebaseContext()
- 
-    if (err) {
-      return (
-        <>
-          <p>{err}</p>
-        </>
-      )
-    }
+// console.log(err)
+   
       
   return (
     <div className="home">
@@ -23,6 +17,14 @@ function Home() {
       <div className='all-cards'>
 
         {
+          data.length === 0 ? (
+            <>
+            <p className="loading">Loading.....</p>
+            </>
+          ) : (
+            <>
+            
+        {
          data && data.map((elem) => {
             return (
                 <Card elem={elem} key={elem?.id} />
@@ -30,6 +32,10 @@ function Home() {
             )
           })
         }
+            </>
+          )
+        }
+
       </div>
     </div>
   )

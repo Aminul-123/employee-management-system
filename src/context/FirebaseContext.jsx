@@ -29,7 +29,7 @@ function FirebaseProvider ({children}) {
               //ID -> id of docs in database
             }
             catch(err) {
-              // alert(err.message)
+               alert(err.message)
               setErr(err.message)
             }
           }
