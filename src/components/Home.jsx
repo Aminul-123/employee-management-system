@@ -29,7 +29,7 @@ function Home() {
         {
           data.length === 0 ? (
             <>
-            <MoonLoader color='brown' cssOverride={cssLoader} />
+            <MoonLoader  color='orangered' cssOverride={cssLoader} />
             </>
           ) : (
             <>
