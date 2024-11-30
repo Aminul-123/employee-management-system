@@ -16,7 +16,7 @@ function Home() {
   return (
     <div className="home">
       <div className='employee-heading'>
-        <h2>🎑ALL EMPLOYEES CARDS🎑</h2>
+        <h2>🎑ALL EMPLOYEE CARDS🎑</h2>
         <Link to={'/add-employee'} className='add-employee-link' >Add Employee</Link>
         <form>
         <input type="text" className='search' placeholder='search Employee '

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { useFirebaseContext } from "../context/FirebaseContext";
 import { deleteDoc, doc } from "firebase/firestore";
+import { Suspense } from "react";
+import { MoonLoader } from "react-spinners";
 
 function Card ({elem}) {
   const {firestore} = useFirebaseContext();
@@ -17,8 +19,6 @@ function Card ({elem}) {
     return (
       <>
        <div  className='card-cont'  >
-                 
-
                      <img src="https://cdn-icons-png.freepik.com/512/1870/1870038.png" alt="img" className='emp-img' />
                     <p>Name : {`${firstname} ${lastname}`} </p>
                     <p>ID: {id} </p>
