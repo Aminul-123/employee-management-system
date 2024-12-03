@@ -35,12 +35,10 @@ function FirebaseProvider ({children}) {
           }
           getAllEmployee()
         }, [data?.length])
-// console.log(data.map((elem) => elem.ID))
  
 
     async function addEmployee (employee) {
-        const res = await addDoc(collection(firestore, 'add-employee'), employee )
-      //  console.log(res)
+        await addDoc(collection(firestore, 'add-employee'), employee )
     }
     return (
         <FirebaseContext.Provider value={{app, addEmployee, firestore , data, err}} >

@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import Card from './Card';
 import { useFirebaseContext } from '../context/FirebaseContext';
 import {MoonLoader} from 'react-spinners'
+import Footer from './Footer';
+import { signOut } from 'firebase/auth';
+import { auth } from '../context/FirebaseAuthProvider';
+
 function Home() {
   const {data} = useFirebaseContext()
   const [name, setName] = useState('')
@@ -14,6 +18,7 @@ function Home() {
   
       
   return (
+    <>
     <div className="home">
       <div className='employee-heading'>
         <h2>🎑ALL EMPLOYEE CARDS🎑</h2>
@@ -23,6 +28,7 @@ function Home() {
        onChange={(e) => setName(e.target.value)}
        />
         </form>
+        <button onClick={() => signOut(auth)} className='btn btn-signout'>Signout</button>
       </div>
       <div className='all-cards'>
 
@@ -50,6 +56,8 @@ function Home() {
 
       </div>
     </div>
+    <Footer />
+    </>
   )
 }
 

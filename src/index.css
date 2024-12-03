@@ -40,6 +40,16 @@ body {
   font-size: 1.7rem;
   font-weight: lighter;
 }
+.btn-signout {
+  background-color: #bdc004;
+  padding: 10px;
+  outline: none;
+  border: none;
+  color: rgb(255, 255, 255);
+  /* transform: translateX(12em); */
+  position: fixed;
+  right: 3rem;
+}
 .add-employee-link {
   padding: 10px;
   /* border: 1px solid #fcf3f3; */
@@ -52,6 +62,46 @@ body {
 .add-employee-link:hover {
   background-color: #ae0051e5;
   transition: all;
+}
+
+/* login and signup */
+.login-form {
+  height: 40%;
+  width: 40%;
+  background-color: #bb850f;
+  color: white;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  transform: translate(70%, 20%);
+  /* align-items: center; */
+}
+.login-form input {
+  padding: 5px;
+  width: 70%;
+}
+.login-form .auth-option {
+  color: rgb(236, 251, 253);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 8px;
+}
+.login-form .auth-option:hover {
+  background-color: #06b3b3;
+  transition: all;
+}
+.login-form .sign-btn {
+  padding: 10px;
+  background-color: #bdc400;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
 /* all cards */
@@ -232,23 +282,29 @@ footer {
 
 }
 
-@media screen and (max-width : 724px) {
-  .home > div > h2 {
-    font-size: 1rem;
-    width: 70%;
-  }
-  .home .employee-heading {
-    gap: 10px;
-  }
-  .all-cards {
-    transform: translateX(5rem);
-  }
-}
 
 @media screen and (max-width : 379px) {
+  /* smallest mobile device */
   .home > div > h2 {
     font-size: 13px;
     width: 50%;
+  }
+  .login-form {
+    /* width: 40%; */
+  width: 91%;
+  padding: 1rem;
+  font-size: 1rem;
+  transform: none;
+  /* align-items: center; */
+  margin: 8rem 1rem 1rem 1rem;
+
+  }
+  .login-form input {
+    width: 50%;
+  }
+  .btn-signout {
+    display: none;
+
   }
   .search {
     display: none;
@@ -373,8 +429,7 @@ and (max-width : 779px) {
     border-radius: 7px;
   }
 }
-@media screen and (min-width : 779px) and 
-(max-width : 1024px) {
+@media screen and (min-width : 779px) and (max-width : 1024px) {
   .home > div > h2 {
     font-size: 1.2rem;
   }
